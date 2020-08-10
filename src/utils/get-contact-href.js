@@ -4,10 +4,10 @@ const getContactHref = (name: string, contact: string) => {
 
   switch (name) {
     case 'twitter':
-      href = `https://www.twitter.com/${contact}`;
+      href = 'https://www.twitter.com/maceacherndjh';
       break;
     case 'github':
-      href = `https://github.com/${contact}`;
+      href = 'https://github.com/davidmaceachern';
       break;
     case 'vkontakte':
       href = `https://vk.com/${contact}`;
@@ -19,7 +19,7 @@ const getContactHref = (name: string, contact: string) => {
       href = `mailto:${contact}`;
       break;
     case 'linkedin':
-      href = `https://www.linkedin.com/in/${contact}`;
+      href = 'https://www.linkedin.com/in/david-maceachern-35943440/';
       break;
     case 'instagram':
       href = `https://www.instagram.com/${contact}`;
