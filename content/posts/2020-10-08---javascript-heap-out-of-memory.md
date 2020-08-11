@@ -58,5 +58,3 @@ I had seen this error once before when writing an inefficient looping algorithm 
 When in doubt, it is often cost-effective to start again. Since I knew I wanted to use this blog template I forked the original (thanks @alxshelepenok) and quickly made all the changes I had made before.
 
 The original goal I set out to achieve was to get a blog ready to start sharing some knowledge around topics I have been working on. It's always important to keep in mind the underlying motivations behind doing something, and to check in with yourself to see if the problem you are solving will help you reach your objective.
-
-So if you're stuck with something, it's always possible 
