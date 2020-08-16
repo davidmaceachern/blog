@@ -12,6 +12,8 @@ tags:
 ---
 A good place to begin when learning about developing Cloud Native solutions is with collecting some data and storing it in a filesystem. 
 
+You might not have access to an AWS account, or you might be wanting a provider agnostic solution. AWS free tier is very generous and definitely enough for small organisations to get their business value out there to test ideas.
+
 The cloud has a reputation of being complex, but it consists of components that have existed for decades. One of these components helps us to store data in a filesystem, and in the cloud this is known as an object store. 
 
 We can draw parallels with object stores and the filesystem that we use on our desktop machines.
