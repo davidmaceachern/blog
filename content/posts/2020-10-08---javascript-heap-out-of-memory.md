@@ -1,19 +1,19 @@
 ---
-title: Javascript heap out of memory, so what? 
-date: "2020-08-10T16:40:32.169Z"
-template: "post"
+slug: javascript-heap-out-of-memory
 draft: false
-slug: "javascript-heap-out-of-memory"
-category: "nodejs"
-tags:
-  - "Web Development"
-  - "Starting out"
-  - "Errors"
-  - "Meta"
-  - "Issue tracking"
-  - "Reproducibility"
-description: "When development environment problems turn into a blogging opportunity..."
 socialImage: ""
+template: post
+title: Javascript heap out of memory, so what?
+date: 2020-08-10T16:40:32.169Z
+description: When development environment problems turn into a blogging opportunity...
+category: nodejs
+tags:
+  - Web Development
+  - Starting out
+  - Errors
+  - Meta
+  - Issue tracking
+  - Reproducibility
 ---
 
 In all seriousness, if you are here to solve your problem then you might be better going to [Stackoverflow](https://stackoverflow.com/questions/38558989/node-js-heap-out-of-memory) and trying what is described there.
@@ -60,3 +60,7 @@ When in doubt, it is often cost-effective to start again. Since I knew I wanted 
 The original goal I set out to achieve was to get a blog ready to start sharing some knowledge around topics I have been working on. It's always important to keep in mind the underlying motivations behind doing something, and to check in with yourself to see if the problem you are solving will help you reach your objective.
 
 So don't forget you can always go back to the beginning!
+
+## Edit: Some notes on 17 August 2020
+- After checking the upstream repository for related issues it appears that the memory leak has been encountered [before here](https://github.com/womcauliff/womcauliff.com/issues/1) and [here](https://github.com/alxshelepenok/gatsby-starter-lumen/issues/278).
+- Future work could include looking further into the Netlify-cms library to see if the methods Toptal suggest could reveal the root cause.
