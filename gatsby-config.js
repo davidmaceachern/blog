@@ -209,10 +209,10 @@ module.exports = {
       options: {
         // Either `code` or `selfHostUrl` is required.
         // REQUIRED IF USING HOSTED GOATCOUNTER! https://[my_code].goatcounter.com
-        code: 'YOUR_GOATCOUNTER_PAGE_CODE',
+        code: 'dmac',
 
         // REQUIRED IF USING SELFHOSTED GOATCOUNTER!
-        selfHostUrl: `https://example.com`,
+        // selfHostUrl: `https://davidmaceachern.com`,
 
         // ALL following settings are OPTIONAL
 
