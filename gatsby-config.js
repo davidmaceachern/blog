@@ -209,7 +209,7 @@ module.exports = {
       options: {
         // Either `code` or `selfHostUrl` is required.
         // REQUIRED IF USING HOSTED GOATCOUNTER! https://[my_code].goatcounter.com
-        code: 'dmac',
+        code: 'https://dmac.goatcounter.com',
 
         // REQUIRED IF USING SELFHOSTED GOATCOUNTER!
         // selfHostUrl: `https://davidmaceachern.com`,
