@@ -6,7 +6,6 @@
   "scripts": {
     "develop": "yarn run clean && gatsby develop",
     "build": "yarn run clean && gatsby build",
-    "deploy": "yarn run clean && gatsby build --prefix-paths && gh-pages -d public",
     "clean": "rimraf .cache public",
     "flow": "flow",
     "lint:js": "eslint --cache --ext .js,.jsx .",
@@ -104,6 +103,7 @@
     "eslint-watch": "7.0.0",
     "flow-bin": "^0.129.0",
     "flow-typed": "^3.2.1",
+    "gatsby-plugin-goatcounter": "^0.4.0",
     "gh-pages": "3.1.0",
     "identity-obj-proxy": "3.0.0",
     "jest": "26.2.1",
