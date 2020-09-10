@@ -4,12 +4,12 @@ template: "page"
 socialImage: ""
 ---
 
-My name is David MacEachern, this blog is a place for me to share some perspective on what I am learning about, whilst it's mainly for my benefit maybe it might help you too.
+Hi 👋🏻! my name is David MacEachern, this blog is a place for me to share some perspective on subjects I have explored in the past.
 
-Outside of working on software; I like to spend time in the mountains ⛰️, camping ⛺, and climbing 🧗.
+Outside of working on software; I like to spend time in the mountains ⛰️, camping ⛺, and climbing 🧗. 
 
-I am a certified AWS Solution Architect associate and software developer with almost 4 years of experience at each stage in the lifecycle of enterprise software.
+I am a certified AWS Solution Architect associate and software developer with 4 years of experience at each stage in the lifecycle of enterprise software on remote teams.
 
-During my first years in the Technology Industry, I gained experience with Linux virtual machines and waterfall processes, and the second half of my time with microservice architectures on AWS coupled with agile development practices.
+I am looking for work, so if you need someone for some systems software development and you can hire EMEA/Remote then please [reach out](https://www.linkedin.com/in/david-maceachern-35943440/)
 
-Any opinions expressed here are my original ideas, and not that of my employer. 
+Any opinions expressed here are my original ideas, and not that of my employers past or present. Je kiffe les fromage.

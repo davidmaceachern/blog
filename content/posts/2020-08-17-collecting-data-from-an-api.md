@@ -693,7 +693,7 @@ And add the break condition.
 
 ### Closing
 
-So that's it, until the next time. Many thanks to all the great individuals who worked on the Crates used in this article, and the `Doc.rs` team's work really make it a breeze getting moving with Rust.
+So that's it, until the next time. Many thanks to all the great individuals who worked on the Crates used in this article, and the `Doc.rs` team's work that really makes it a breeze getting moving with Rust.
 
 Some things that we could do next:
 - Add a test that will mock calling the API and create a data factory for generating random test data.
