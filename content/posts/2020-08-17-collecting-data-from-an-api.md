@@ -2,36 +2,45 @@
 template: post
 title: Collecting Data from an API
 slug: collecting-data-from-an-api
-draft: true
-date: 2020-08-17T11:18:19.921Z
-description: "\n"
+draft: false 
+date: 2020-09-09T18:18:19.921Z
+description: "Step by step guide to retrieving data from an API over HTTP and storing it in a Filestore as JSON."
 category: Rust
 tags:
-  - Data API Filesystem Crates
+  - Data 
+  - API
+  - Filestore
+  - Crates
+  - Logging
+  - CLI
+socialImage: "./collecting-data-2020-08-11-1827.svg"
 ---
-Data is essential when building applications. 
+![Data](/media/data.webp)
+*— Photo by [Taylor Vick](https://unsplash.com/photos/M5tzZtFCOfs) on [Unsplash](https://unsplash.com/)*
 
-Let's collect some data that we can use to write an application.
+Data is essential when building applications. We can collect data by calling an API and storing it locally in a database or filestore.
 
-Continue reading if you want to:
-- Query an API.
-- Handle some Http errors.
-- Collect some data and save it as JSON.
-- Write an application in Rust.
+Continue reading if you want to do the following in Rust:
+
+- [Find some data to use](#finding-data.)
+- [Query an API and handle some HTTP errors](#setting-up-the-project.)
+- [Collect some data saving it locally as JSON](#persisting-the-data-locally.)
 
 If you are looking for the complete code you can find it [here](github.com/davidmaceachern/playground-data-collection-rust).
 
 ## Requirements
 
-Before going further let's define how we can address the requirements of the application to avoid doing more than necessary.
-
+Let's consider how we can achieve our goal:
 - **Finding data** we need to have some open data we can collect from an API somewhere. It needs to be open because like Music and Films we need to have permission to use it.
-- **Collecting data** we can do this using a HTTP client, it's worth noting that a data structure that is transmitted via HTTP is serialized as a string.
-- **Storing data** can be done using a filesystem. This can be done by converting the strings we collect to a suitable data structure and outputting it to a file. The format we choose will depend on what we want to do with the data later on.
+- **Collecting data** we can do this using an HTTP client, it's worth noting that a data structure that is transmitted via HTTP is serialized as a string.
+- **Storing data** can be done using a filestore. This can be done by converting the strings we collect to a suitable data structure and outputting it to a file. The format we choose will depend on what we want to do with the data later on.
+
+![collecting-data-2020-08-11-1827.svg](/media/collecting-data-2020-08-11-1827.svg)
+*The flow of data from the internet to our machine.*
 
 ## Finding Data 
 
-Firstly we need an API we can query for some data if you do not already have one chosen, a good place to start is this [repository](https://github.com/public-apis/public-apis).
+Firstly we need an API we can query for some data, a good place to start is this [repository](https://github.com/public-apis/public-apis).
 
 For this exercise, we are going to get some [cat facts](https://alexwohlbruck.github.io/cat-facts/docs/). Taking a look through the repository we can see a [repository licence](https://github.com/alexwohlbruck/cat-facts/blob/master/LICENSE), which looks permissive enough to use this data.
 
@@ -55,6 +64,8 @@ We can use a web browser to call a `GET` endpoint, pasting this endpoint `https:
   "user": "5a9ac18c7478810ea6c06381"
 }
 ```
+Ok this is great but we want our application to do this for us.
+
 
 ## Writing an Application in Rust
 
@@ -62,7 +73,7 @@ We can use a web browser to call a `GET` endpoint, pasting this endpoint `https:
 
 We are going to write our application in Rust, if you haven't already you can install Rust using the instructions [here](https://www.rust-lang.org/learn/get-started).
 
-Next, we want to check that the installation provided the `Cargo` package manager, we can do this by running: 
+To install code packages created by other people we will need to check if we have the `Cargo` package manager, we can do this by running: 
 
 ``` Bash
 $ cargo --version
@@ -73,19 +84,23 @@ If that returned the version we have, we can then initialize a new project that 
 $ cargo init --bin
 ```
 
-One thing I like about Rust is the ecosystem, as functionalities that other languages have built-in can be provided through `Crates` until the Rust Language team adopt them.
+One thing I like about Rust is the ecosystem. If another language has a feature that is useful it can be recreated as a crate and used. Maybe in a future Rust Edition this feature might be built in!
 
-I would recommend installing `cargo-edit` for adding packages the same way you might do in Javascript when running `$ npm install --save`.
+One such crate I would recommend is `cargo-edit` which let's us add packages the same way we might do in Javascript by using `$ npm install --save`.
+
+We can install this package by running:
 
 ``` Rust
 $ cargo install cargo-edit
 ```
 
+### Breaking down the problem
+
 To address the problem our application will solve, we can use the following crates together:
 - The HTTP client we can use to send the request for our data is very helpfully called [reqwest](https://crates.io/crates/reqwest)
 - Filesystem interactions will be provided by a JSON file store called [jfs](https://crates.io/crates/jfs)
 - To convert our strings to data structures and data structures to strings we can use [serde](https://crates.io/crates/serde)
-  - For dealing with JSON data structures we can use [serde_json](https://crates.io/crates/serde_json)
+- For dealing with JSON data structures we can use [serde_json](https://crates.io/crates/serde_json)
 - To avoid worrying about how we implement errors for now we can use [anyhow](https://crates.io/crates/anyhow)
 
 
@@ -126,7 +141,7 @@ What I am going to do from here onwards however:
 ``` Rust
 $ cargo run
 ```
-Which will build and execute the code for us so we can have some feedback from theError: Server responded with: 404 Not Found output:
+Which will build and execute the code for us so we can have some feedback.
 ``` Bash 
     Finished dev [unoptimized + debuginfo] target(s) in 0.06s
      Running `target/debug/data-collection-rust`
@@ -181,7 +196,7 @@ We're using the `?` operator here to handle calling a function that could throw 
 -fn main() {
 +fn main() -> Result {
 ```
-Seems that isn't exactly what the compiler wants:
+It seems that isn't exactly what the compiler wants:
 ``` Bash
 error[E0107]: wrong number of type arguments: expected 2, found 0
  --> src/main.rs:1:14
@@ -306,7 +321,7 @@ Seems the compiler is warning us about something:
 ``` Bash
 warning: unnecessary parentheses around `if` condition
 ```
-Remove the parentheses and now upon receiving a status code that isn't `200`
+Remove the parentheses and now upon receiving a status code that isn't `200` it should return an error.
 ``` Bash
 Error: Server responded with: 404 Not Found
 ```
@@ -314,10 +329,10 @@ Great. Next, let's look at getting our facts out of the response.
 
 ### Deserializing Data
 
-Let's start by trying to store the body's text as a string.
+Let's start by trying to deserialize the response string into our applications memory.
 
 ``` diff
-+    let string = serde_json::from_str(response.text());
++    let deserialized = serde_json::from_str(response.text());
      Ok(())
 ```
 
@@ -327,35 +342,35 @@ The compiler complains...
 error[E0308]: mismatched types
   --> src/main.rs:10:39
    |
-10 |     let string = serde_json::from_str(response.text());
+10 |     let deserialized = serde_json::from_str(response.text());
    |                                       ^^^^^^^^^^^^^^^ expected `&str`, found enum `std::result::Result`
 ```
 We can try to get the result by telling Rust that we might expect an error on both function calls, allowing us to access the result which hopefully is of type `&str`.
 
 ``` diff
--    let string = serde_json::from_str(response.text());
-+    let string = serde_json::from_str(response.text()?)?;
+-    let deserialized = serde_json::from_str(response.text());
++    let deserialized = serde_json::from_str(response.text()?)?;
 ```
 
 ``` Bash
 error[E0308]: try expression alternatives have incompatible types
   --> src/main.rs:10:39
    |
-10 |     let string = serde_json::from_str(response.text()?);
+10 |     let deserialized = serde_json::from_str(response.text()?);
    |                                       ^^^^^^^^^^^^^^^^
    |                                       |
    |                                       expected `&str`, found struct `std::string::String`
    |                                       help: consider borrowing here: `&response.text()?`
 ```
 
-Wow, the compiler tells us what we might be able to do to fix the problem. Ok so if we reference the response instead...
+Wow, the compiler tells us what we might be able to do to fix the problem. Then if we reference using the borrow operator on the response instead...
 
 ``` Bash
-warning: unused variable: `string`
+warning: unused variable: `deserialized`
   --> src/main.rs:10:9
    |
-10 |     let string = serde_json::from_str(&response.text()?)?;
-   |         ^^^^^^ help: if this is intentional, prefix it with an underscore: `_string`
+10 |     let deserialized = serde_json::from_str(&response.text()?)?;
+   |         ^^^^^^ help: if this is intentional, prefix it with an underscore: `_deserialized`
    |
    = note: `#[warn(unused_variables)]` on by default
 
@@ -366,11 +381,15 @@ warning: 1 warning emitted
 Error: invalid type: map, expected unit at line 1 column 0
 ```
 
-Ok, nice so we only have one warning which we can ignore because we plan to use the variable. The error however might take some figuring out. So it turns out we can coerce Rust to try to parse using a specific type provided by serde_json. This will only work if the item is valid JSON.
+Ok, nice so we only have one warning which we can ignore because we plan to use the variable later. The error however might take some figuring out.
+
+![spongebob.jpg](/media/spongebob.jpg)
+
+So it turns out we can coerce Rust to try to parse using a specific type provided by serde_json. This will only work if the item is valid JSON.
 
 ``` diff
--    let string = serde_json::from_str(&response.text()?)?;
-+    let string: Value = serde_json::from_str(&response.text()?)?;
+-    let deserialized = serde_json::from_str(&response.text()?)?;
++    let value: Value = serde_json::from_str(&response.text()?)?;
 ```
 So the code compiles, we can print out what string now holds to check what the response body looks like.
 
@@ -379,7 +398,7 @@ So the code compiles, we can print out what string now holds to check what the r
 ```
 
 ``` bash
-[src/main.rs:12] string = Object({
+[src/main.rs:12] value = Object({
     "__v": Number(
         0,
     ),
@@ -425,9 +444,11 @@ Awesome, so this looks more like the kind of data we might want to use later. Ru
 
 ### Determining the types
 
-Rust is a strongly typed language so this means we define the types that our application needs to know about, and should do so when we can because the compiler is not always able to infer. It's useful to define the structure of our data for future reference so that when it comes to expanding our application we might need to understand the shape of our data.
+Rust is a strongly typed language so this means we define the types that our application needs to know about, and where possible we should do so when we can because the compiler is not always able to infer. 
 
-Having checked the serde_json documentation we will need to make the following changes:
+It's useful to define the structure of our data for future reference so that when it comes to expanding our application we might need to understand the shape of our data.
+
+Having checked the `serde_json` documentation we will need to make the following changes:
 1. At the top of the `main.rs`
     ``` diff
     -use serde_json::Value;
@@ -563,9 +584,7 @@ Great, but what if we want to keep collecting items, can we make the application
 
 ### Collecting more than one item
 
-So now to collect more than one item.
-
-We can add a loop that will run infinitely. You will notice that I have moved items out of the loop as it should be more efficient to only run them once at start-up.
+Collecting more than one item can be achieved by adding a loop that will run infinitely. You will notice that I have moved items out of the loop as it should be more efficient to only run them once at start-up.
 
 ``` diff
 fn main() -> Result<(), anyhow::Error> {
@@ -605,7 +624,9 @@ Great but we can probably slow down our requests so we don't DDOS or throttle th
 [2020-08-28T13:18:05Z INFO  data_collection_rust] Written one file with key: 1e0f9ca5-d2fe-44a0-801b-869bee21233c
 ```
 
-We can do this be making the thread this process run in sleep for some time. So let's import this functionality.
+We can do this be making the thread this process runs in sleep for some time. 
+
+So let's import this functionality.
 
 ``` diff
  use serde::{Deserialize, Serialize};
@@ -625,7 +646,9 @@ Then when we run our application.
 [2020-08-28T13:24:08Z INFO  data_collection_rust] Written one file with key: 30183e77-c25c-453c-922b-e027ba9a0e54
 [2020-08-28T13:24:14Z INFO  data_collection_rust] Written one file with key: f1b63d41-8452-442f-8e3d-c4fea7bf80d0
 ```
-Great, you can see the time difference between the two requests is greater now, we could set this duration as an environment variable if we wanted later. 
+Great, you can see the time difference between the two requests is greater now
+
+The duration is a variable we could set as an environment variable later on if we wanted to configure it more often. 
 
 ``` bash
 warning: unreachable expression
@@ -668,52 +691,18 @@ And add the break condition.
 +        }
 ```
 
+### Closing
 
-## Future work
+So that's it, until the next time. Many thanks to all the great individuals who worked on the Crates used in this article, and the `Doc.rs` team's work really make it a breeze getting moving with Rust.
 
 Some things that we could do next:
-- Add a test that will mock calling the API.
-- Create a data factory for generating random test data.
-- Use a storage layer such as Amazon S3 to enable scaling.
+- Add a test that will mock calling the API and create a data factory for generating random test data.
+- Package this code with a compute solution such as AWS Lambda so it's not just run on our machine.
+- Use a storage layer such as AWS S3 to enable scaling.
 
-Thanks for reading, I hope this helped you, please reach out to me on Twitter if you have any questions and/or suggestions!
-
-## Misc
-
-### Response
-
-``` Rust
-Response {
-    url: "https://cat-fact.herokuapp.com/facts/random",
-    status: 200,
-    header: {
-        "server": "Cowboy",
-        "connection": "keep-alive",
-        "x-powered-by": "Express",
-        "access-control-allow-origin": "*",
-        "content-type": "application/json; charset=utf-8",
-        "content-length": "305",
-        "etag": "W/\"131-4MvaJDAXqtlkSUWatxfF1BCPTek\"",
-        "set-cookie": "connect.sid=s%3Ap0LnvYyEQUN9plmg--3mnx7DNd1dyhI4.Ms1oCBB5sWMAMwCtgfye572bD%2FBfxlCRkRRoq8cLzEY; Path=/; HttpOnly",
-        "date": "Tue, 18 Aug 2020 20:04:01 GMT",
-        "via": "1.1 vegur",
-    },
-}
-```
-
-### Compiler Warnings
-
-This type of warning doesn't stop the code from compiling, it's a bit like Javascripts ESLint telling us that our code isn't idiomatic. 
-``` Bash
-warning: structure field `sentCount` should have a snake case name
-  --> src/main.rs:49:5
-   |
-49 |     sentCount: i32
-   |     ^^^^^^^^^ help: convert the identifier to snake case: `sent_count`
-
-warning: 3 warnings emitted
-```
-
-This can be disabled whilst developing if the noise gets in the way with the following at the top of the file.
-
-`#![allow(non_snake_case)]`
+If you have any suggested improvements, want to discuss this article
+[Hackernews](https://news.ycombinator.com/news), 
+[/r/rust](),
+[dev.to](https://dev.to/),
+or if you just want to say hello 👋🏻
+[Linkedin](https://www.linkedin.com/in/david-maceachern-35943440//) & [Twitter](https://mobile.twitter.com/maceacherndjh).
