@@ -26,14 +26,14 @@ Continue reading if you want to do the following in Rust:
 - [Query an API and handle some HTTP errors](#setting-up-the-project.)
 - [Collect some data saving it locally as JSON](#persisting-the-data-locally.)
 
-If you are looking for the complete code you can find it [here](github.com/davidmaceachern/playground-data-collection-rust).
+If you are looking for the complete code you can find it [here](https://www.github.com/davidmaceachern/playground-data-collection-rust).
 
 ## Requirements
 
 Let's consider how we can achieve our goal:
 - **Finding data** we need to have some open data we can collect from an API somewhere. It needs to be open because like Music and Films we need to have permission to use it.
 - **Collecting data** we can do this using an HTTP client, it's worth noting that a data structure that is transmitted via HTTP is serialized as a string.
-- **Storing data** can be done using a filestore. This can be done by converting the strings we collect to a suitable data structure and outputting it to a file. The format we choose will depend on what we want to do with the data later on.
+- **Storing data** can be achieved by using a filestore. This can be done by converting the strings we collect to a suitable data structure and outputting it to a file. The format we choose will depend on what we want to do with the data later on.
 
 ![collecting-data-2020-08-11-1827.svg](/media/collecting-data-2020-08-11-1827.svg)
 *The flow of data from the internet to our machine.*

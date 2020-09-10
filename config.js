@@ -4,7 +4,7 @@ module.exports = {
   url: 'https://www.davidmaceachern.com',
   pathPrefix: '/',
   title: 'David MacEachern',
-  subtitle: 'Scottish software engineer, experimenting with writing about technology.',
+  subtitle: 'Scottish software engineer, living by the mountains.',
   copyright: '© All rights reserved.',
   disqusShortname: '',
   postsPerPage: 4,
@@ -23,7 +23,7 @@ module.exports = {
   author: {
     name: 'David MacEachern',
     photo: '/photo.jpeg',
-    bio: 'Scottish software engineer, experimenting with writing about technology.',
+    bio: 'Scottish software engineer, living by the mountain.',
     contacts: {
       email: '',
       facebook: '',
