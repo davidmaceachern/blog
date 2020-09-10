@@ -701,8 +701,8 @@ Some things that we could do next:
 - Use a storage layer such as AWS S3 to enable scaling.
 
 If you have any suggested improvements, want to discuss this article
-[Hackernews](https://news.ycombinator.com/news), 
-[/r/rust](),
+[Hackernews](https://news.ycombinator.com/item?id=24435139s), 
+[/r/rust](https://www.reddit.com/r/rust/comments/iq98xw/learning_rust_collecting_data_from_an_api/),
 [dev.to](https://dev.to/),
 or if you just want to say hello 👋🏻
 [Linkedin](https://www.linkedin.com/in/david-maceachern-35943440//) & [Twitter](https://mobile.twitter.com/maceacherndjh).
