@@ -23,7 +23,7 @@ module.exports = {
   author: {
     name: 'David MacEachern',
     photo: '/photo.jpeg',
-    bio: 'Scottish software engineer, living by the mountain.',
+    bio: 'Scottish software engineer, living by the mountains.',
     contacts: {
       email: '',
       facebook: '',
