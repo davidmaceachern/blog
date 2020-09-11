@@ -13,7 +13,7 @@ tags:
   - Crates
   - Logging
   - CLI
-socialImage: "./collecting-data-2020-08-11-1827.svg"
+socialImage: "/media/collecting-data-2020-08-11-1827.svg"
 ---
 ![Data](/media/data.webp)
 *— Photo by [Taylor Vick](https://unsplash.com/photos/M5tzZtFCOfs) on [Unsplash](https://unsplash.com/)*
