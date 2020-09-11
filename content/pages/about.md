@@ -12,6 +12,6 @@ I am a certified AWS Solution Architect associate and software developer with 4 
 
 I am looking for work, so if you need someone for some systems software development and you can hire EMEA/Remote then please [reach out](https://www.linkedin.com/in/david-maceachern-35943440/)
 
-Any opinions expressed here are my original ideas, and not that of my employers past or present. 
+Any opinions expressed here are my original ideas, and not that of my employers past or present.
 
-Je kiffe les fromages!
+J'aime les fromages!
