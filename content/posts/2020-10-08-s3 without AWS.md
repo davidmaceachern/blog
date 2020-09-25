@@ -28,3 +28,9 @@ We can see what is currently on the market by visiting this cool [CNCF diagram](
 |:----:|:---:|
 |23,268||
 
+```
+docker run -p 8999:9000 \
+  -e "MINIO_ACCESS_KEY=AKIAIOSFODNN6EXAMPLE" \
+  -e "MINIO_SECRET_KEY=wJalrXUtnFEMI/K6MDENG/bPxRfiCYEXAMPLEKEY" \
+  minio/minio server /data
+```
